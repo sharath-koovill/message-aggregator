@@ -6,11 +6,10 @@ import (
 	"flag"
 	"log"
 
+	messageService "github.com/example/messageService"
 	"github.com/golang/protobuf/ptypes/wrappers"
-
-	"pulsar/pulsar_consumer"
-
-	"../utils"
+	"github.com/sharath-koovill/message-aggregator/blob/master/services/message_service/internal/pulsar/pulsar_consumer"
+	"github.com/sharath-koovill/message-aggregator/blob/master/services/message_service/internal/utils"
 )
 
 type messageServiceGRPCServer struct {

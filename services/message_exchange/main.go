@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	"internal/mock/mock"
-	"internal/pulsar/pulsar_producer"
+	"github.com/sharath-koovill/message-aggregator/blob/master/services/message_service/internal/mock/mock"
+	"github.com/sharath-koovill/message-aggregator/blob/master/services/message_service/internal/pulsar/pulsar_producer"
 
 	"github.com/joho/godotenv"
 )

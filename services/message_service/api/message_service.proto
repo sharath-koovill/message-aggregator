@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package proto.message_service;
+option go_package = "messageService";
+
+message Empty {}
+
+enum MessageSource {
+  TWITTER = 0;
+  MASTODON = 1;
+}
+
+message DirectMessage {
+  string id = 1;
+  string senderId = 2;
+  string text = 3;
+  string eventType = 4;
+  string createdAt = 5;
+  MessageSource messageSource = 6;
+  // optional object referencedPost = 7;
+  // optional object attachments = 8;
+}
+
+message GetRealTimeDirectMessagesRequest {
+  Empty empty = 1;
+}
+
+message GetRealTimeDirectMessagesResponse {
+  repeated DirectMessage directMessage = 1;
+}
+
+message GetHistoricalDirectMessagesRequest {
+  string Date = 1;
+  string limit = 2;
+}
+
+message GetHistoricalDirectMessagesResponse {
+  repeated DirectMessage directMessage = 1;
+}
+
+service MessageService {
+  rpc GetRealTimeDirectMessages (GetRealTimeDirectMessagesRequest) returns (GetRealTimeDirectMessagesResponse) {}
+  rpc GetHistoricalDirectMessages (GetHistoricalDirectMessagesRequest) returns (GetHistoricalDirectMessagesResponse) {}
+}

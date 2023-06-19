@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/sharath-koovill/message-aggregator/blob/master/services/message_service/internal/mock/mock"
-	"github.com/sharath-koovill/message-aggregator/blob/master/services/message_service/internal/pulsar/pulsar_producer"
+	"message_service/internal/mock"
+	"message_service/internal/pulsar"
 
 	"github.com/joho/godotenv"
 )
@@ -83,7 +83,7 @@ func main() {
 	flag.Parse()
 
 	mockServer := mock.MockServer()
-	pulsarClient := pulsar_producer.GetPulsarClient(pulsarUrl)
+	pulsarClient := pulsar.GetPulsarClient(pulsarUrl)
 
 	apiURLs := []string{
 		mockServer.URL + "/twitter/conversations",
@@ -106,7 +106,7 @@ func main() {
 					log.Fatalf("Error fetching data from %s: %s\n", response.URL, response.Err)
 				} else {
 					// Sending the real time messages to apache pulsar
-					pulsar_producer.ProduceMessage(pulsarClient, pulsarTopic, response.Payload)
+					pulsar.ProduceMessage(pulsarClient, pulsarTopic, response.Payload)
 					log.Printf("Data from %s: %s\n", response.URL, response.Payload)
 				}
 			case <-time.After(5 * time.Second):

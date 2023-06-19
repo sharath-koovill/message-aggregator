@@ -6,10 +6,11 @@ import (
 	"flag"
 	"log"
 
+	"message_service/internal/pulsar"
+	"message_service/internal/utils"
+
 	messageService "github.com/example/messageService"
 	"github.com/golang/protobuf/ptypes/wrappers"
-	"github.com/sharath-koovill/message-aggregator/blob/master/services/message_service/internal/pulsar/pulsar_consumer"
-	"github.com/sharath-koovill/message-aggregator/blob/master/services/message_service/internal/utils"
 )
 
 type messageServiceGRPCServer struct {
@@ -80,6 +81,6 @@ func GetMessagesFromPulsar() string {
 	)
 	flag.Parse()
 
-	pulsarClient := pulsar_consumer.GetPulsarClient(pulsarUrl)
-	return pulsar_consumer.PulsarConsumer(pulsarClient, pulsarTopic)
+	pulsarClient := pulsar.GetPulsarClient(pulsarUrl)
+	return pulsar.PulsarConsumer(pulsarClient, pulsarTopic)
 }

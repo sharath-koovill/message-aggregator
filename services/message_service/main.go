@@ -10,7 +10,7 @@ import (
 
 	pb "path/to/generated/package" // Importing the generated gRPC code
 
-	"github.com/sharath-koovill/message-aggregator/blob/master/services/message_service/internal/utils"
+	"message_service/internal/utils"
 )
 
 // init loads environment variables from dev.env or prod.env depending on the value of TARGET_ENV
